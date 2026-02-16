@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Karnataka Waterfalls | Top 25</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waterfalls - Karnataka</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -16,44 +16,54 @@
 }
 
 body{
-    background:#0b1c2d;
-    color:#fff;
+    background:#0f172a;
+    color:white;
 }
 
-/* HERO */
-.hero{
-    height:60vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url("images/waterfall-bg.jpg");
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+section{
+    padding:60px 8%;
+}
+
+h1{
     text-align:center;
+    margin-bottom:50px;
+    font-size:36px;
 }
 
-.hero h1{
-    font-size:50px;
+.back-btn{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    background:linear-gradient(45deg,#0ea5e9,#0284c7);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    transition:0.3s;
 }
 
-/* SECTION */
-.section{
-    padding:80px 8%;
+.back-btn:hover{
+    transform:scale(1.05);
 }
 
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+    gap:25px;
 }
 
 .card{
-    background:#132b45;
-    border-radius:15px;
+    background:#1e293b;
+    border-radius:18px;
     overflow:hidden;
-    transition:0.4s;
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .card:hover{
@@ -70,293 +80,104 @@ body{
     padding:20px;
 }
 
-.card h3{
+.card-content h3{
     margin-bottom:10px;
-    color:#ffc107;
 }
 
-.card p{
+.card-content p{
     font-size:14px;
-    opacity:0.9;
+    opacity:0.8;
+    margin-bottom:15px;
 }
 
-footer{
-    text-align:center;
-    padding:30px;
-    background:#000;
-    font-size:14px;
+.card-content button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#0ea5e9,#0284c7);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    transform:scale(1.05);
 }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
-    <h1>Top 25 Waterfalls of Karnataka</h1>
+<section>
+
+<a href="index.html" class="back-btn">← Back to Home</a>
+
+<h1>Top 25 Waterfalls in Karnataka</h1>
+
+<div class="grid" id="fallsGrid"></div>
+
 </section>
 
-<section class="section">
-<div class="grid">
+<script>
 
-<div class="card">
-<img src="images/jog.jpg">
-<div class="card-content">
-<h3>Jog Falls</h3>
-<p>India’s second highest plunge waterfall located in Shivamogga district. 
-The Sharavathi River drops from a height of 830 feet creating a breathtaking view. 
-The monsoon season transforms it into a roaring spectacle. 
-It is one of Karnataka’s most visited natural attractions.</p>
-</div>
-</div>
+const waterfalls = [
 
-<div class="card">
-<img src="images/shivanasamudra.jpg">
-<div class="card-content">
-<h3>Shivanasamudra Falls</h3>
-<p>One of India’s first hydroelectric power stations is located here. 
-The twin falls Gaganachukki and Bharachukki are spectacular during monsoon. 
-Situated on the Cauvery River, it offers stunning viewpoints. 
-A perfect weekend getaway from Bengaluru.</p>
-</div>
-</div>
+{ name:"Jog Falls", img:"https://source.unsplash.com/800x600/?jog,falls", desc:"One of India’s highest waterfalls located in Shivamogga district." },
+{ name:"Shivanasamudra Falls", img:"https://source.unsplash.com/800x600/?shivanasamudra,waterfall", desc:"Twin waterfalls on the Cauvery River." },
+{ name:"Abbey Falls", img:"https://source.unsplash.com/800x600/?abbey,falls", desc:"Scenic waterfall near Madikeri in Coorg." },
+{ name:"Hebbe Falls", img:"https://source.unsplash.com/800x600/?hebbe,falls", desc:"Beautiful waterfall in Kemmangundi hills." },
+{ name:"Unchalli Falls", img:"https://source.unsplash.com/800x600/?unchalli,falls", desc:"Also known as Lushington Falls near Sirsi." },
+{ name:"Magod Falls", img:"https://source.unsplash.com/800x600/?magod,falls", desc:"Waterfall formed by Bedti River." },
+{ name:"Gokak Falls", img:"https://source.unsplash.com/800x600/?gokak,falls", desc:"Mini Niagara of Karnataka." },
+{ name:"Iruppu Falls", img:"https://source.unsplash.com/800x600/?iruppu,falls", desc:"Sacred waterfall near Nagarhole forest." },
+{ name:"Kalhatti Falls", img:"https://source.unsplash.com/800x600/?kalhatti,waterfall", desc:"Waterfall near Kemmangundi." },
+{ name:"Barkana Falls", img:"https://source.unsplash.com/800x600/?barkana,falls", desc:"Among the highest waterfalls in India." },
+{ name:"Sathodi Falls", img:"https://source.unsplash.com/800x600/?sathodi,falls", desc:"Hidden gem in Uttara Kannada." },
+{ name:"Hogenakkal Falls", img:"https://source.unsplash.com/800x600/?hogenakkal,falls", desc:"Famous waterfall near Karnataka-Tamil Nadu border." },
+{ name:"Chunchanakatte Falls", img:"https://source.unsplash.com/800x600/?chunchanakatte,falls", desc:"Sacred waterfall near Mysuru." },
+{ name:"Arishina Gundi Falls", img:"https://source.unsplash.com/800x600/?arishina,gundi", desc:"Trekking waterfall in Western Ghats." },
+{ name:"Kunchikal Falls", img:"https://source.unsplash.com/800x600/?kunchikal,falls", desc:"One of the tallest waterfalls in India." },
+{ name:"Koosalli Falls", img:"https://source.unsplash.com/800x600/?koosalli,falls", desc:"Remote waterfall in dense forest." },
+{ name:"Bennehole Falls", img:"https://source.unsplash.com/800x600/?bennehole,falls", desc:"Waterfall near Mallalli region." },
+{ name:"Mallalli Falls", img:"https://source.unsplash.com/800x600/?mallalli,falls", desc:"Spectacular falls in Coorg." },
+{ name:"Hanuman Gundi Falls", img:"https://source.unsplash.com/800x600/?hanuman,gundi,falls", desc:"Waterfall in Kudremukh National Park." },
+{ name:"Kadambi Falls", img:"https://source.unsplash.com/800x600/?kadambi,falls", desc:"Scenic waterfall in Kudremukh region." },
+{ name:"Bandaje Falls", img:"https://source.unsplash.com/800x600/?bandaje,falls", desc:"Trek to waterfall in Western Ghats." },
+{ name:"Jomlu Theertha Falls", img:"https://source.unsplash.com/800x600/?jomlu,theertha,falls", desc:"Beautiful falls near Udupi." },
+{ name:"Sirimane Falls", img:"https://source.unsplash.com/800x600/?sirimane,falls", desc:"Popular waterfall near Sringeri." },
+{ name:"Agaya Gangai Falls", img:"https://source.unsplash.com/800x600/?waterfall,cliff", desc:"Deep gorge waterfall (near border region)." },
+{ name:"Chunchi Falls", img:"https://source.unsplash.com/800x600/?chunchi,falls", desc:"Small waterfall near Kanakapura." }
 
-<div class="card">
-<img src="images/abbey.jpg">
-<div class="card-content">
-<h3>Abbey Falls</h3>
-<p>Located in Coorg amidst coffee plantations and spice estates. 
-The waterfall cascades down from 70 feet into a pool below. 
-A hanging bridge provides a scenic viewing point. 
-Best visited during rainy season for full flow.</p>
-</div>
-</div>
+];
 
-<div class="card">
-<img src="images/ishanya.jpg">  
-<div class="card-content">
-<h3>Ishanya Falls</h3>          
-<p>Hidden gem in the Western Ghats near Sakleshpur.
-A serene waterfall surrounded by lush greenery.
-Ideal for nature lovers and photographers.</p>  
-</div>
-</div>
+const grid = document.getElementById("fallsGrid");
 
-<div class="card">
-<img src="images/varahi.jpg">   
-<div class="card-content">
-<h3>Varahi Falls</h3>
-<p>Located in the dense forests of Western Ghats near Kundapura.
-A multi-tiered waterfall with a tranquil pool at the base.
-Perfect for a refreshing dip and nature walks.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/kalhatti.jpg">         
-<div class="card-content">
-<h3>Kalhatti Falls</h3>
-<p>Situated in the Chikmagalur district, it is a hidden treasure.
-The waterfall is surrounded by coffee plantations and lush greenery.
-A short trek through the forest leads to this serene spot.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/hebbe.jpg">
-<div class="card-content">
-<h3>Hebbe Falls</h3>    
-<p>Located in the Kemmangundi hills, it is a two-tiered waterfall.
-The upper tier is called Dodda Hebbe (Big Falls) and the lower tier is Chikka Hebbe (Small Falls).
-The falls are surrounded by dense forests and are a popular trekking destination.</p>
-</div>  
-</div>
-
-<div class="card">  
-<img src="images/unchalli.jpg">
-<div class="card-content">
-<h3>Unchalli Falls</h3>
-<p>Also known as Lushington Falls, it is located near Sirsi.
-The waterfall is formed by the Aghanashini River and drops from a height of 116 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>  
-</div>
-
-<div class="card">
-<img src="images/magod.jpg">    
-<div class="card-content">
-<h3>Magod Falls</h3>
-<p>Located in the Uttara Kannada district, it is formed by the Bedti River.
-The waterfall drops from a height of 182 meters and is surrounded by lush greenery.
-It is a popular spot for trekking and nature walks.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/gokak.jpg">    
-<div class="card-content">
-<h3>Gokak Falls</h3>
-<p>Located in the Belagavi district, it is often referred to as the "Niagara of Karnataka".
-The waterfall is formed by the Ghataprabha River and drops from a height of 52 meters.
-The falls are surrounded by rocky cliffs and are a popular tourist destination.</p>
-</div>  
-</div>
-
-<div class="card">
-<img src="images/sathodi.jpg">      
-<div class="card-content">
-<h3>Sathodi Falls</h3>
-<p>Located in the Uttara Kannada district, it is a hidden gem in the Western Ghats.
-The waterfall is formed by the Sonda River and drops from a height of 15 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and photographers.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/barkana.jpg">  
-<div class="card-content">
-<h3>Barkana Falls</h3>
-<p>Located in the Uttara Kannada district, it is one of the highest waterfalls in India.
-The waterfall is formed by the Seetha River and drops from a height of 259 meters.
-The falls are surrounded by dense forests and are a popular spot for trekking and nature walks.</p>
-</div>
-</div>
-
-<div class="card">
-<img src="images/iruppu.jpg">
-<div class="card-content">
-<h3>Iruppu Falls</h3>
-<p>Located in the Nagarhole forest, it is a sacred waterfall for Hindus.
-The waterfall is formed by the Lakshmana Tirtha River and drops from a height of 170 feet.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>  
-</div>
-
-<div class="card">
-<img src="images/bhadra.jpg">
-<div class="card-content">
-<h3>Bhadra Falls</h3>
-<p>Located in the Chikmagalur district, it is a beautiful waterfall surrounded by lush greenery.
-The waterfall is formed by the Bhadra River and drops from a height of 30 meters.
-The falls are a popular spot for trekking and nature walks.</p>
-</div>  
-</div>
-
-<div class="card">
-<img src="images/varahi.jpg">
-<div class="card-content">
-<h3>Varahi Falls</h3>
-<p>Located in the dense forests of Western Ghats near Kundapura.
-The waterfall is formed by the Varahi River and drops from a height of 25 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>
-</div>
-
-<div class="card">      
-<img src="images/ishanya.jpg">
-<div class="card-content">
-<h3>Ishanya Falls</h3>
-<p>Hidden gem in the Western Ghats near Sakleshpur.
-The waterfall is formed by a small stream and drops from a height of 20 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-</div>  
-</div>
-
-<div class="card">
-<img src="images/kalhatti.jpg">
-<div class="card-content">
-<h3>Kalhatti Falls</h3>
-<p>Situated in the Chikmagalur district, it is a hidden treasure.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by coffee plantations and lush greenery, making it a perfect spot for nature lovers</p>
-</div>
-</div>
-
-<div class="card">
-    <img src="images/jomlu.jpg">
-    <div class="card-content">
-        <h3> Jomlu Theertha Falls</h3>
-        <p>Located in the Chikkamagalur district, it is a hidden gem in the Western Ghats.
-The waterfall is formed by the Jomlu River and drops from a height of 25 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and photographers.</p>
-    </div>
-</div>
-
-<div class="card">
-    <img src="images/sirimane.jpg">
-    <div class="card-content">
-        <h3> Sirimane Falls</h3>
-        <p>Located near Sringeri in the Chikkamagalur district, it is a popular waterfall in the Western Ghats.
-The waterfall is formed by a small stream and drops from a height of 15 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-</div>
-</div>
-
-<div class="card">
-    <img src="images/agaya.jpg">
-    <div class="card-content">
-        <h3> Agaya Gangai Falls</h3>
-        <p>Located near the border region of Karnataka and Tamil Nadu, it is a deep gorge waterfall.
-The waterfall is formed by a small stream and drops from a height of 50 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-    </div>      
-</div>
-
-<div class="card">
-    <img src="images/chunchi.jpg">
-    <div class="card-content">
-        <h3> Chunchi Falls</h3>
-        <p>Located near Kanakapura in the Ramanagara district, it is a small waterfall.
-The waterfall is formed by a small stream and drops from a height of 20 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-    </div>
-    </div>
-
-    <div class="card">
-        <img src="images/bennehole.jpg">
-        <div class="card-content">
-            <h3> Bennehole Falls</h3>
-            <p>Located near Mallalli in the Coorg district, it is a scenic waterfall.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
+waterfalls.forEach(place => {
+    grid.innerHTML += `
+        <div class="card">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="card-content">
+                <h3>${place.name}</h3>
+                <p>${place.desc}</p>
+                <button onclick="alert('More details coming soon!')">View Details</button>
+            </div>
         </div>
-    </div>  
+    `;
+});
 
-    <div class="card">
-        <img src="images/mallalli.jpg">
-        <div class="card-content">
-            <h3> Mallalli Falls</h3>
-            <p>Located in the Coorg district, it is a spectacular waterfall.
-The waterfall is formed by the Kumaradhara River and drops from a height of 200 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-        </div>
-    </div>
+// Scroll Animation
+const cards = document.querySelectorAll('.card');
 
-    <div class="card">
-        <img src="images/hanuman.jpg">
-        <div class="card-content">
-            <h3> Hanuman Gundi Falls</h3>
-            <p>Located in the Kudremukh National Park, it is a beautiful waterfall.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-        </div>
-    </div>
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(cardTop < windowHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
 
-    <div class="card">
-        <img src="images/kadambi.jpg">
-        <div class="card-content">
-            <h3> Kadambi Falls</h3>
-            <p>Located in the Kudremukh region, it is a scenic waterfall.
-The waterfall is formed by a small stream and drops from a height of 25 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-        </div>
-    </div>
-
-    </div>
-        </section>
-
-<footer>
-© 2026 Karnataka Tourism | Designed by Jeevan
-</footer>
+</script>
 
 </body>
 </html>
