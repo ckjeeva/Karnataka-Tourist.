@@ -20,6 +20,18 @@ body{
     color:white;
 }
 
+nav{
+    padding:20px 8%;
+    background:#0f172a;
+}
+
+nav a{
+    color:#06b6d4;
+    text-decoration:none;
+    font-weight:600;
+    font-size:16px;
+}
+
 section{
     padding:60px 8%;
 }
@@ -89,30 +101,21 @@ h1{
 }
 </style>
 </head>
+
 <body>
 
-    <nav style="padding:20px 8%; background:#0f172a;">
-    <a href="index.html" style="
-        color:#06b6d4;
-        text-decoration:none;
-        font-weight:600;
-        font-size:16px;">
-        ← Back to Home
-    </a>
+<nav>
+    <a href="index.html">← Back to Home</a>
 </nav>
-
 
 <section>
 <h1>Top 25 Adventure Places in Karnataka</h1>
-
 <div class="grid" id="adventureGrid"></div>
-
 </section>
 
 <script>
 
 const places = [
-
 { name:"Dandeli", img:"Dandeli.jpg", desc:"River rafting, kayaking and jungle safari adventures." },
 { name:"Kudremukh", img:"kudremukh trek.jpg", desc:"Scenic trekking destination in Western Ghats." },
 { name:"Kumara Parvatha", img:"kumara parvatha.jpg", desc:"Challenging multi-day trek for experienced hikers." },
@@ -138,37 +141,47 @@ const places = [
 { name:"Biligiri Hills", img:"Biligiri Hills.jpg", desc:"Elephant sightings and jungle safari." },
 { name:"Shivanasamudra Falls", img:"Shivanasamudra Falls.jpg", desc:"Powerful twin waterfalls on River Cauvery." },
 { name:"Devarayanadurga", img:"Devarayanadurga.jpg", desc:"Rocky hills perfect for sunrise trekking." }
-
 ];
 
 const grid = document.getElementById("adventureGrid");
 
+// Create cards
 places.forEach(place => {
-    grid.innerHTML += `
-        <div class="card">
-            <img src="${place.img}" alt="${place.name}">
-            <div class="card-content">
-                <h3>${place.name}</h3>
-                <p>${place.desc}</p>
-                <button onclick="alert('More details coming soon!')">View Details</button>
-            </div>
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.innerHTML = `
+        <img src="${place.img}" alt="${place.name}">
+        <div class="card-content">
+            <h3>${place.name}</h3>
+            <p>${place.desc}</p>
+            <button onclick="viewDetails('${place.name}')">View Details</button>
         </div>
     `;
+
+    grid.appendChild(card);
 });
 
-
-// Scroll Animation
-const cards = document.querySelectorAll('.card');
-
-window.addEventListener('scroll', () => {
+// Scroll Animation (Fixed)
+function revealCards(){
+    const cards = document.querySelectorAll(".card");
     cards.forEach(card => {
         const cardTop = card.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
+
         if(cardTop < windowHeight - 100){
-            card.classList.add('show');
+            card.classList.add("show");
         }
     });
-});
+}
+
+window.addEventListener("scroll", revealCards);
+window.addEventListener("load", revealCards);
+
+// View Details Navigation
+function viewDetails(placeName){
+    window.location.href = "adventure-details.html?place=" + encodeURIComponent(placeName);
+}
 
 </script>
 
