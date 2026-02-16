@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karnataka Adventure Places</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+section{
+    padding:60px 8%;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:36px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:15px;
+}
+
+.card-content button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#06b6d4,#3b82f6);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+    <nav style="padding:20px 8%; background:#0f172a;">
+    <a href="index.html" style="
+        color:#06b6d4;
+        text-decoration:none;
+        font-weight:600;
+        font-size:16px;">
+        ← Back to Home
+    </a>
+</nav>
+
+
+<section>
+<h1>Top 25 Adventure Places in Karnataka</h1>
+
+<div class="grid" id="adventureGrid"></div>
+
+</section>
+
+<script>
+
+const places = [
+
+{ name:"Dandeli", img:"https://source.unsplash.com/800x600/?dandeli,river", desc:"River rafting, kayaking and jungle safari adventures." },
+{ name:"Kudremukh", img:"https://source.unsplash.com/800x600/?kudremukh,hills", desc:"Scenic trekking destination in Western Ghats." },
+{ name:"Kumara Parvatha", img:"https://source.unsplash.com/800x600/?kumara,parvatha", desc:"Challenging multi-day trek for experienced hikers." },
+{ name:"Skandagiri", img:"https://source.unsplash.com/800x600/?skandagiri,hills", desc:"Famous for night trekking near Bangalore." },
+{ name:"Kodachadri", img:"https://source.unsplash.com/800x600/?kodachadri", desc:"Jeep ride and trekking through dense forest." },
+{ name:"Tadiandamol", img:"https://source.unsplash.com/800x600/?tadiandamol", desc:"Highest peak in Coorg with stunning views." },
+{ name:"Mullayanagiri", img:"https://source.unsplash.com/800x600/?mullayanagiri", desc:"Highest peak in Karnataka, great for hiking." },
+{ name:"Savandurga", img:"https://source.unsplash.com/800x600/?savandurga", desc:"Asia’s largest monolith ideal for trekking." },
+{ name:"Ramanagara", img:"https://source.unsplash.com/800x600/?ramanagara,rocks", desc:"Rock climbing and rappelling hotspot." },
+{ name:"Bheemeshwari", img:"https://source.unsplash.com/800x600/?bheemeshwari,river", desc:"River rafting and adventure camping." },
+{ name:"Nandi Hills", img:"https://source.unsplash.com/800x600/?nandi,hills", desc:"Sunrise trek and cycling paradise." },
+{ name:"Bandipur National Park", img:"https://source.unsplash.com/800x600/?bandipur,tiger", desc:"Wildlife safari and jungle exploration." },
+{ name:"Nagarhole National Park", img:"https://source.unsplash.com/800x600/?nagarhole,forest", desc:"Jeep safari in dense forest reserve." },
+{ name:"Anthargange", img:"https://source.unsplash.com/800x600/?anthargange,cave", desc:"Cave exploration and night trekking." },
+{ name:"Agumbe", img:"https://source.unsplash.com/800x600/?agumbe,forest", desc:"Rainforest trekking and sunset viewpoints." },
+{ name:"Chitradurga Fort", img:"https://source.unsplash.com/800x600/?chitradurga,fort", desc:"Massive hill fort perfect for exploration." },
+{ name:"Jog Falls", img:"https://source.unsplash.com/800x600/?jog,falls", desc:"One of India’s highest waterfalls." },
+{ name:"Coorg", img:"https://source.unsplash.com/800x600/?coorg,hills", desc:"Coffee hills and river rafting adventures." },
+{ name:"Yana Caves", img:"https://source.unsplash.com/800x600/?yana,caves", desc:"Unique limestone rock formations." },
+{ name:"Gokarna", img:"https://source.unsplash.com/800x600/?gokarna,beach", desc:"Beach trekking and water sports." },
+{ name:"BR Hills", img:"https://source.unsplash.com/800x600/?br,hills", desc:"Wildlife safari and forest trekking." },
+{ name:"Kemmangundi", img:"https://source.unsplash.com/800x600/?kemmangundi", desc:"Hill station with scenic trekking trails." },
+{ name:"Biligiri Hills", img:"https://source.unsplash.com/800x600/?biligiri,hills", desc:"Elephant sightings and jungle safari." },
+{ name:"Shivanasamudra Falls", img:"https://source.unsplash.com/800x600/?shivanasamudra,falls", desc:"Powerful twin waterfalls on River Cauvery." },
+{ name:"Devarayanadurga", img:"https://source.unsplash.com/800x600/?devarayanadurga", desc:"Rocky hills perfect for sunrise trekking." }
+
+];
+
+const grid = document.getElementById("adventureGrid");
+
+places.forEach(place => {
+    grid.innerHTML += `
+        <div class="card">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="card-content">
+                <h3>${place.name}</h3>
+                <p>${place.desc}</p>
+                <button onclick="alert('More details coming soon!')">View Details</button>
+            </div>
+        </div>
+    `;
+});
+
+
+// Scroll Animation
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(cardTop < windowHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

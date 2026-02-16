@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildlife - Karnataka</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+section{
+    padding:60px 8%;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:36px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:scale(1.05);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:15px;
+}
+
+.card-content button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<section>
+
+<a href="index.html" class="back-btn">← Back to Home</a>
+
+<h1>Top 25 Wildlife Destinations in Karnataka</h1>
+
+<div class="grid" id="wildlifeGrid"></div>
+
+</section>
+
+<script>
+
+const wildlifePlaces = [
+
+{ name:"Bandipur National Park", img:"https://source.unsplash.com/800x600/?bandipur,tiger", desc:"Famous tiger reserve in the Nilgiri Biosphere." },
+{ name:"Nagarhole National Park", img:"https://source.unsplash.com/800x600/?nagarhole,forest", desc:"Dense forests with elephants and leopards." },
+{ name:"Bannerghatta National Park", img:"https://source.unsplash.com/800x600/?bannerghatta,zoo", desc:"Safari park near Bangalore with lions and tigers." },
+{ name:"Dandeli Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?dandeli,forest", desc:"Home to black panthers and hornbills." },
+{ name:"Bhadra Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?bhadra,forest", desc:"Rich biodiversity and tiger reserve." },
+{ name:"Kudremukh National Park", img:"https://source.unsplash.com/800x600/?kudremukh,forest", desc:"Western Ghats park with scenic wildlife trails." },
+{ name:"BR Hills", img:"https://source.unsplash.com/800x600/?br,hills,forest", desc:"Biligiri Rangaswamy Hills wildlife area." },
+{ name:"Sharavathi Valley Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?sharavathi,forest", desc:"Known for lion-tailed macaques." },
+{ name:"Someshwara Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?someshwara,forest", desc:"Evergreen forests near Agumbe." },
+{ name:"Anshi National Park", img:"https://source.unsplash.com/800x600/?anshi,forest", desc:"Part of Kali Tiger Reserve." },
+{ name:"Kali Tiger Reserve", img:"https://source.unsplash.com/800x600/?kali,river,forest", desc:"Rich tiger habitat near Dandeli." },
+{ name:"Ranganathittu Bird Sanctuary", img:"https://source.unsplash.com/800x600/?ranganathittu,birds", desc:"Famous bird sanctuary near Mysuru." },
+{ name:"Gudavi Bird Sanctuary", img:"https://source.unsplash.com/800x600/?gudavi,birds", desc:"Peaceful wetland bird sanctuary." },
+{ name:"Attiveri Bird Sanctuary", img:"https://source.unsplash.com/800x600/?attiveri,lake", desc:"Lake sanctuary with migratory birds." },
+{ name:"Mookambika Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?mookambika,forest", desc:"Dense forests near Kollur temple." },
+{ name:"Pushpagiri Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?pushpagiri,hills", desc:"Western Ghats biodiversity hotspot." },
+{ name:"Talacauvery Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?talacauvery,forest", desc:"Sacred origin of River Cauvery." },
+{ name:"Melukote Temple Wildlife Area", img:"https://source.unsplash.com/800x600/?melukote,hills", desc:"Grassland habitat with wildlife." },
+{ name:"Cauvery Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?cauvery,river", desc:"Riverine forest sanctuary." },
+{ name:"Arabithittu Wildlife Sanctuary", img:"https://source.unsplash.com/800x600/?arabithittu,forest", desc:"Dry forest with deer and leopards." },
+{ name:"Ranebennur Blackbuck Sanctuary", img:"https://source.unsplash.com/800x600/?blackbuck", desc:"Grassland reserve for blackbucks." },
+{ name:"Daroji Sloth Bear Sanctuary", img:"https://source.unsplash.com/800x600/?sloth,bear", desc:"India’s only sloth bear sanctuary." },
+{ name:"Bankapura Peacock Sanctuary", img:"https://source.unsplash.com/800x600/?peacock", desc:"Sanctuary dedicated to peacocks." },
+{ name:"Magadi Bird Sanctuary", img:"https://source.unsplash.com/800x600/?magadi,birds", desc:"Wetland sanctuary for flamingos." },
+{ name:"Kokkare Bellur", img:"https://source.unsplash.com/800x600/?pelican,birds", desc:"Village known for pelican conservation." }
+
+];
+
+const grid = document.getElementById("wildlifeGrid");
+
+wildlifePlaces.forEach(place => {
+    grid.innerHTML += `
+        <div class="card">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="card-content">
+                <h3>${place.name}</h3>
+                <p>${place.desc}</p>
+                <button onclick="alert('More details coming soon!')">View Details</button>
+            </div>
+        </div>
+    `;
+});
+
+
+// Scroll Animation
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(cardTop < windowHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

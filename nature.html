@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nature & Scenic - Karnataka</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+section{
+    padding:60px 8%;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:36px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:scale(1.05);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:15px;
+}
+
+.card-content button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<section>
+
+<a href="index.html" class="back-btn">← Back to Home</a>
+
+<h1>Top 25 Nature & Scenic Places in Karnataka</h1>
+
+<div class="grid" id="natureGrid"></div>
+
+</section>
+
+<script>
+
+const naturePlaces = [
+
+{ name:"Western Ghats", img:"https://source.unsplash.com/800x600/?western,ghats", desc:"UNESCO World Heritage mountain range with rich biodiversity." },
+{ name:"Coorg", img:"https://source.unsplash.com/800x600/?coorg,nature", desc:"Misty hills, coffee estates and scenic valleys." },
+{ name:"Chikmagalur", img:"https://source.unsplash.com/800x600/?chikmagalur,nature", desc:"Beautiful landscapes and green plantations." },
+{ name:"Agumbe", img:"https://source.unsplash.com/800x600/?agumbe,forest", desc:"Sunset point of Karnataka with rainforest beauty." },
+{ name:"Kudremukh", img:"https://source.unsplash.com/800x600/?kudremukh", desc:"Lush green mountains and trekking paradise." },
+{ name:"BR Hills", img:"https://source.unsplash.com/800x600/?br,hills", desc:"Scenic hills with forests and wildlife." },
+{ name:"Sakleshpur", img:"https://source.unsplash.com/800x600/?sakleshpur,nature", desc:"Green valleys and plantation views." },
+{ name:"Kabini Backwaters", img:"https://source.unsplash.com/800x600/?kabini,lake", desc:"Peaceful backwaters surrounded by forests." },
+{ name:"Sharavathi Valley", img:"https://source.unsplash.com/800x600/?sharavathi,river", desc:"River valley with breathtaking views." },
+{ name:"Honnemaradu", img:"https://source.unsplash.com/800x600/?honnemaradu,lake", desc:"Calm lake destination perfect for nature lovers." },
+{ name:"Mullayanagiri", img:"https://source.unsplash.com/800x600/?mullayanagiri", desc:"Highest peak offering panoramic views." },
+{ name:"Tadiandamol", img:"https://source.unsplash.com/800x600/?tadiandamol", desc:"Second highest peak in Karnataka." },
+{ name:"Kodachadri", img:"https://source.unsplash.com/800x600/?kodachadri,hill", desc:"Hilltop temple and sunset viewpoints." },
+{ name:"Nandi Hills", img:"https://source.unsplash.com/800x600/?nandi,hills", desc:"Famous sunrise destination near Bengaluru." },
+{ name:"Kemmanagundi", img:"https://source.unsplash.com/800x600/?kemmanagundi", desc:"Garden hill station with cool climate." },
+{ name:"Anthargange", img:"https://source.unsplash.com/800x600/?anthargange", desc:"Caves and rocky hills with scenic beauty." },
+{ name:"Brahmagiri Hills", img:"https://source.unsplash.com/800x600/?brahmagiri", desc:"Mountain range with misty atmosphere." },
+{ name:"Pushpagiri", img:"https://source.unsplash.com/800x600/?pushpagiri", desc:"Trekking peak surrounded by forests." },
+{ name:"Charmadi Ghat", img:"https://source.unsplash.com/800x600/?charmadi,ghat", desc:"Scenic drive through mountain pass." },
+{ name:"Bisle Ghat", img:"https://source.unsplash.com/800x600/?bisle,ghat", desc:"Dense forest valley views." },
+{ name:"Ramanagara Hills", img:"https://source.unsplash.com/800x600/?ramanagara,hills", desc:"Rock formations and natural beauty." },
+{ name:"Kunti Betta", img:"https://source.unsplash.com/800x600/?kunti,betta", desc:"Night trekking and sunrise views." },
+{ name:"Savandurga", img:"https://source.unsplash.com/800x600/?savandurga", desc:"Large monolithic hill landscape." },
+{ name:"Biligiriranga Hills", img:"https://source.unsplash.com/800x600/?biligiri,hills", desc:"Forest rich scenic hill region." },
+{ name:"Devarayanadurga", img:"https://source.unsplash.com/800x600/?devarayanadurga", desc:"Temple hill with beautiful surroundings." }
+
+];
+
+const grid = document.getElementById("natureGrid");
+
+naturePlaces.forEach(place => {
+    grid.innerHTML += `
+        <div class="card">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="card-content">
+                <h3>${place.name}</h3>
+                <p>${place.desc}</p>
+                <button onclick="alert('More details coming soon!')">View Details</button>
+            </div>
+        </div>
+    `;
+});
+
+// Scroll Animation
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(cardTop < windowHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

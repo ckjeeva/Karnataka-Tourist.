@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hills - Karnataka</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+section{
+    padding:60px 8%;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:50px;
+    font-size:36px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:scale(1.05);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#1e293b;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:15px;
+}
+
+.card-content button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(45deg,#22c55e,#16a34a);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card-content button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<section>
+
+<a href="index.html" class="back-btn">← Back to Home</a>
+
+<h1>Top 25 Hills & Hill Stations in Karnataka</h1>
+
+<div class="grid" id="hillsGrid"></div>
+
+</section>
+
+<script>
+
+const hills = [
+
+{ name:"Coorg (Madikeri)", img:"https://source.unsplash.com/800x600/?coorg,hills", desc:"Scotland of India famous for coffee estates and misty hills." },
+{ name:"Chikmagalur", img:"https://source.unsplash.com/800x600/?chikmagalur,hills", desc:"Coffee capital of Karnataka with scenic mountain views." },
+{ name:"Nandi Hills", img:"https://source.unsplash.com/800x600/?nandi,hills", desc:"Popular sunrise point near Bengaluru." },
+{ name:"Kudremukh", img:"https://source.unsplash.com/800x600/?kudremukh,hills", desc:"Trekking paradise with lush green peaks." },
+{ name:"Kemmanagundi", img:"https://source.unsplash.com/800x600/?kemmanagundi", desc:"Hill station with gardens and waterfalls." },
+{ name:"Agumbe", img:"https://source.unsplash.com/800x600/?agumbe,hills", desc:"Known for stunning sunsets and rainforests." },
+{ name:"BR Hills", img:"https://source.unsplash.com/800x600/?br,hills", desc:"Biligiriranga Hills with forest landscapes." },
+{ name:"Sakleshpur", img:"https://source.unsplash.com/800x600/?sakleshpur,hills", desc:"Beautiful hill station with plantations and treks." },
+{ name:"Kodachadri", img:"https://source.unsplash.com/800x600/?kodachadri,hill", desc:"Mountain peak in Western Ghats with temple." },
+{ name:"Bababudangiri", img:"https://source.unsplash.com/800x600/?bababudangiri", desc:"Famous mountain range in Chikmagalur." },
+{ name:"Mullayanagiri", img:"https://source.unsplash.com/800x600/?mullayanagiri", desc:"Highest peak in Karnataka." },
+{ name:"Tadiandamol", img:"https://source.unsplash.com/800x600/?tadiandamol", desc:"Second highest peak in Karnataka." },
+{ name:"Male Mahadeshwara Hills", img:"https://source.unsplash.com/800x600/?mm,hills", desc:"Sacred hills with temple and forests." },
+{ name:"Yelagiri Border Hills", img:"https://source.unsplash.com/800x600/?western,ghats", desc:"Western Ghats scenic hill region." },
+{ name:"Charmadi Ghat", img:"https://source.unsplash.com/800x600/?charmadi,ghat", desc:"Beautiful mountain pass drive." },
+{ name:"Bisle Ghat", img:"https://source.unsplash.com/800x600/?bisle,ghat", desc:"Dense forest ghat road with valley views." },
+{ name:"Biligiriranga Hills", img:"https://source.unsplash.com/800x600/?biligiri,hills", desc:"Wildlife rich hill region." },
+{ name:"Ramanagara Hills", img:"https://source.unsplash.com/800x600/?ramanagara,hills", desc:"Rocky hills famous for trekking." },
+{ name:"Kunti Betta", img:"https://source.unsplash.com/800x600/?kunti,betta", desc:"Night trekking hill near Pandavapura." },
+{ name:"Savandurga", img:"https://source.unsplash.com/800x600/?savandurga", desc:"One of Asia’s largest monolith hills." },
+{ name:"Skandagiri", img:"https://source.unsplash.com/800x600/?skandagiri", desc:"Sunrise trekking destination." },
+{ name:"Anthargange", img:"https://source.unsplash.com/800x600/?anthargange", desc:"Hill with caves and trekking trails." },
+{ name:"Brahmagiri Hills", img:"https://source.unsplash.com/800x600/?brahmagiri,hills", desc:"Mountain range in Coorg region." },
+{ name:"Pushpagiri Hills", img:"https://source.unsplash.com/800x600/?pushpagiri", desc:"Trekking hill in Western Ghats." },
+{ name:"Devarayanadurga", img:"https://source.unsplash.com/800x600/?devarayanadurga", desc:"Temple hill with scenic views." }
+
+];
+
+const grid = document.getElementById("hillsGrid");
+
+hills.forEach(place => {
+    grid.innerHTML += `
+        <div class="card">
+            <img src="${place.img}" alt="${place.name}">
+            <div class="card-content">
+                <h3>${place.name}</h3>
+                <p>${place.desc}</p>
+                <button onclick="alert('More details coming soon!')">View Details</button>
+            </div>
+        </div>
+    `;
+});
+
+// Scroll Animation
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if(cardTop < windowHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
