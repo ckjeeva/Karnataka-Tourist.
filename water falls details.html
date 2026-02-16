@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Karnataka Waterfalls | Top 25</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Details</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -16,16 +16,12 @@
 }
 
 body{
-    background:#0b1c2d;
-    color:#fff;
+    background:#0f172a;
+    color:white;
 }
 
-/* HERO */
 .hero{
     height:60vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url("images/waterfall-bg.jpg");
     background-size:cover;
     background-position:center;
     display:flex;
@@ -35,328 +31,190 @@ body{
 }
 
 .hero h1{
-    font-size:50px;
+    font-size:40px;
+    background:rgba(0,0,0,0.6);
+    padding:15px 30px;
+    border-radius:10px;
 }
 
-/* SECTION */
-.section{
-    padding:80px 8%;
+.content{
+    padding:60px 10%;
+    line-height:1.7;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+.info-box{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    margin-top:30px;
 }
 
-.card{
-    background:#132b45;
-    border-radius:15px;
-    overflow:hidden;
-    transition:0.4s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-}
-
-.card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
-
-.card-content{
-    padding:20px;
-}
-
-.card h3{
-    margin-bottom:10px;
-    color:#ffc107;
-}
-
-.card p{
-    font-size:14px;
-    opacity:0.9;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    background:#000;
-    font-size:14px;
+.back{
+    display:inline-block;
+    margin:20px;
+    color:#06b6d4;
+    text-decoration:none;
+    font-weight:600;
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-    <h1>Top 25 Waterfalls of Karnataka</h1>
-</section>
+<a href="water falls.html" class="back">← Back to Adventure</a>
 
-<section class="section">
-<div class="grid">
+<div class="hero" id="hero"></div>
 
-<div class="card">
-<img src="images/jog.jpg">
-<div class="card-content">
-<h3>Jog Falls</h3>
-<p>India’s second highest plunge waterfall located in Shivamogga district. 
-The Sharavathi River drops from a height of 830 feet creating a breathtaking view. 
-The monsoon season transforms it into a roaring spectacle. 
-It is one of Karnataka’s most visited natural attractions.</p>
-</div>
+<div class="content">
+    <h2>About this Destination</h2>
+    <div class="info-box" id="details"></div>
 </div>
 
-<div class="card">
-<img src="images/shivanasamudra.jpg">
-<div class="card-content">
-<h3>Shivanasamudra Falls</h3>
-<p>One of India’s first hydroelectric power stations is located here. 
-The twin falls Gaganachukki and Bharachukki are spectacular during monsoon. 
-Situated on the Cauvery River, it offers stunning viewpoints. 
-A perfect weekend getaway from Bengaluru.</p>
-</div>
-</div>
+<script>
 
-<div class="card">
-<img src="images/abbey.jpg">
-<div class="card-content">
-<h3>Abbey Falls</h3>
-<p>Located in Coorg amidst coffee plantations and spice estates. 
-The waterfall cascades down from 70 feet into a pool below. 
-A hanging bridge provides a scenic viewing point. 
-Best visited during rainy season for full flow.</p>
-</div>
-</div>
+const data = {
 
-<div class="card">
-<img src="images/ishanya.jpg">  
-<div class="card-content">
-<h3>Ishanya Falls</h3>          
-<p>Hidden gem in the Western Ghats near Sakleshpur.
-A serene waterfall surrounded by lush greenery.
-Ideal for nature lovers and photographers.</p>  
-</div>
-</div>
+"Jog Falls":{
+    image:"Jog Falls.jpg",
+    details:"Jog Falls is one of India’s highest waterfalls. It is located in the Shimoga district and is known for its stunning views. The area around Jog Falls is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
 
-<div class="card">
-<img src="images/varahi.jpg">   
-<div class="card-content">
-<h3>Varahi Falls</h3>
-<p>Located in the dense forests of Western Ghats near Kundapura.
-A multi-tiered waterfall with a tranquil pool at the base.
-Perfect for a refreshing dip and nature walks.</p>
-</div>
-</div>
+"Shivanasamudra":{
+    image:"shivanasamudra.jpg",
+    details:"Shivanasamudra is a twin waterfall on the Cauvery River in Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The twin waterfalls are located in the Mandya district and are easily accessible by road."       
+},
 
-<div class="card">
-<img src="images/kalhatti.jpg">         
-<div class="card-content">
-<h3>Kalhatti Falls</h3>
-<p>Situated in the Chikmagalur district, it is a hidden treasure.
-The waterfall is surrounded by coffee plantations and lush greenery.
-A short trek through the forest leads to this serene spot.</p>
-</div>
-</div>
+"Abbey Falls":{
+    image:"abbey falls.jpg",
+    details:"Abbey Falls is one of the most scenic waterfalls in Coorg. It is located in the Western Ghats and is known for its lush green surroundings and tranquil atmosphere. The waterfall is easily accessible and offers a peaceful retreat for nature lovers."
+},
 
-<div class="card">
-<img src="images/hebbe.jpg">
-<div class="card-content">
-<h3>Hebbe Falls</h3>    
-<p>Located in the Kemmangundi hills, it is a two-tiered waterfall.
-The upper tier is called Dodda Hebbe (Big Falls) and the lower tier is Chikka Hebbe (Small Falls).
-The falls are surrounded by dense forests and are a popular trekking destination.</p>
-</div>  
-</div>
+"Hebbe Falls":{
+    image:"hebbe falls.jpg",
+    details:"Hebbe Falls is a beautiful waterfall located in the Kemmangundi hills near Mysore. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is easily accessible and offers a peaceful retreat in the lush green surroundings."
+},
 
-<div class="card">  
-<img src="images/unchalli.jpg">
-<div class="card-content">
-<h3>Unchalli Falls</h3>
-<p>Also known as Lushington Falls, it is located near Sirsi.
-The waterfall is formed by the Aghanashini River and drops from a height of 116 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>  
-</div>
+"Unchalli Falls":{
+    image:"unchalli falls.jpg",
+    details:"Unchalli Falls is also known as Lushington Falls and is located near Sirsi in Karnataka. It is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the Western Ghats."    
+},
 
-<div class="card">
-<img src="images/magod.jpg">    
-<div class="card-content">
-<h3>Magod Falls</h3>
-<p>Located in the Uttara Kannada district, it is formed by the Bedti River.
-The waterfall drops from a height of 182 meters and is surrounded by lush greenery.
-It is a popular spot for trekking and nature walks.</p>
-</div>
-</div>
+"Magod Falls":{
+    image:"Magod Falls.jpg",
+    details:"Magod Falls is a beautiful waterfall formed by the Bedti River in Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is easily accessible and offers a peaceful retreat in the lush green surroundings."
+},      
 
-<div class="card">
-<img src="images/gokak.jpg">    
-<div class="card-content">
-<h3>Gokak Falls</h3>
-<p>Located in the Belagavi district, it is often referred to as the "Niagara of Karnataka".
-The waterfall is formed by the Ghataprabha River and drops from a height of 52 meters.
-The falls are surrounded by rocky cliffs and are a popular tourist destination.</p>
-</div>  
-</div>
+"Gokak Falls":{
+    image:"gokak falls.jpg",
+    details:"Gokak Falls is a beautiful waterfall located in the Gokak region of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is easily accessible and offers a peaceful retreat in the lush green surroundings."
+},
 
-<div class="card">
-<img src="images/sathodi.jpg">      
-<div class="card-content">
-<h3>Sathodi Falls</h3>
-<p>Located in the Uttara Kannada district, it is a hidden gem in the Western Ghats.
-The waterfall is formed by the Sonda River and drops from a height of 15 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and photographers.</p>
-</div>
-</div>
+"iruppu Falls":{
+    image:"iruppu falls.jpg",
+    details:"Iruppu Falls is a beautiful waterfall located in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-<img src="images/barkana.jpg">  
-<div class="card-content">
-<h3>Barkana Falls</h3>
-<p>Located in the Uttara Kannada district, it is one of the highest waterfalls in India.
-The waterfall is formed by the Seetha River and drops from a height of 259 meters.
-The falls are surrounded by dense forests and are a popular spot for trekking and nature walks.</p>
-</div>
-</div>
+"kalhatti falls":{
+    image:"kalhatti falls.jpg",
+    details:"Kalhatti Falls is a beautiful waterfall located in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-<img src="images/iruppu.jpg">
-<div class="card-content">
-<h3>Iruppu Falls</h3>
-<p>Located in the Nagarhole forest, it is a sacred waterfall for Hindus.
-The waterfall is formed by the Lakshmana Tirtha River and drops from a height of 170 feet.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>  
-</div>
+"Barkana Falls":{
+    image:"Barkana Falls.jpg",
+    details:"Barkana Falls is a popular destination for river rafting and adventure camping. It is located on the banks of the Cauvery River and offers stunning views of the surrounding landscape. The area is also known for its rich biodiversity and is a haven for nature lovers and adventure enthusiasts."
+},
 
-<div class="card">
-<img src="images/bhadra.jpg">
-<div class="card-content">
-<h3>Bhadra Falls</h3>
-<p>Located in the Chikmagalur district, it is a beautiful waterfall surrounded by lush greenery.
-The waterfall is formed by the Bhadra River and drops from a height of 30 meters.
-The falls are a popular spot for trekking and nature walks.</p>
-</div>  
-</div>
+"Sathodi Falls":{
+    image:"Sathodi Falls.jpg",
+    details:"Sathodi Falls is a beautiful waterfall located in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-<img src="images/varahi.jpg">
-<div class="card-content">
-<h3>Varahi Falls</h3>
-<p>Located in the dense forests of Western Ghats near Kundapura.
-The waterfall is formed by the Varahi River and drops from a height of 25 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-</div>
-</div>
+" Hogenakkal Fall":{
+    image:"Hogenakkal Falls.jpg",
+    details:"Hogenakkal Falls is a popular destination for river rafting and adventure camping. It is located on the banks of the Cauvery River and offers stunning views of the surrounding landscape. The area is also known for its rich biodiversity and is a haven for nature lovers and adventure enthusiasts."
+},
 
-<div class="card">      
-<img src="images/ishanya.jpg">
-<div class="card-content">
-<h3>Ishanya Falls</h3>
-<p>Hidden gem in the Western Ghats near Sakleshpur.
-The waterfall is formed by a small stream and drops from a height of 20 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-</div>  
-</div>
+"Chunchanakatte Falls":{
+    image:"Chunchanakatte Falls.jpg",
+    details:"Chunchanakatte Falls is a beautiful waterfall located in the Mysuru district of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-<img src="images/kalhatti.jpg">
-<div class="card-content">
-<h3>Kalhatti Falls</h3>
-<p>Situated in the Chikmagalur district, it is a hidden treasure.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by coffee plantations and lush greenery, making it a perfect spot for nature lovers</p>
-</div>
-</div>
+"Arishina Gundi Falls":{
+    image:"Arishina Gundi Falls.jpg",
+    details:"Arishina Gundi Falls is a beautiful waterfall located in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-    <img src="images/jomlu.jpg">
-    <div class="card-content">
-        <h3> Jomlu Theertha Falls</h3>
-        <p>Located in the Chikkamagalur district, it is a hidden gem in the Western Ghats.
-The waterfall is formed by the Jomlu River and drops from a height of 25 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and photographers.</p>
-    </div>
-</div>
+"Kunchikal Falls":{
+    image:"Kunchikal Falls.jpg",
+    details:"Kunchikal Falls is one of the tallest waterfalls in India. It is located in the Shimoga district of Karnataka and is known for its stunning views. The area around Kunchikal Falls is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
 
-<div class="card">
-    <img src="images/sirimane.jpg">
-    <div class="card-content">
-        <h3> Sirimane Falls</h3>
-        <p>Located near Sringeri in the Chikkamagalur district, it is a popular waterfall in the Western Ghats.
-The waterfall is formed by a small stream and drops from a height of 15 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-</div>
-</div>
+"Koosalli Falls":{
+    image:"Koosalli Falls.jpg",
+    details:"Koosalli Falls is a beautiful waterfall located in the Mysuru district of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<div class="card">
-    <img src="images/agaya.jpg">
-    <div class="card-content">
-        <h3> Agaya Gangai Falls</h3>
-        <p>Located near the border region of Karnataka and Tamil Nadu, it is a deep gorge waterfall.
-The waterfall is formed by a small stream and drops from a height of 50 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-    </div>      
-</div>
+"Jog Falls":{
+    image:"Jog Falls.jpg",
+    details:"Jog Falls is one of India’s highest waterfalls. It is located in the Shimoga district and is known for its stunning views. The area around Jog Falls is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
 
-<div class="card">
-    <img src="images/chunchi.jpg">
-    <div class="card-content">
-        <h3> Chunchi Falls</h3>
-        <p>Located near Kanakapura in the Ramanagara district, it is a small waterfall.
-The waterfall is formed by a small stream and drops from a height of 20 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-    </div>
-    </div>
+"Mallalli Falls":{
+    image:"Mallalli Falls.jpg",
+    details:"Mallalli Falls is a popular destination for coffee hills and river rafting adventures. It is located in the Kodagu district and is known for its scenic beauty. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
 
-    <div class="card">
-        <img src="images/bennehole.jpg">
-        <div class="card-content">
-            <h3> Bennehole Falls</h3>
-            <p>Located near Mallalli in the Coorg district, it is a scenic waterfall.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-        </div>
-    </div>  
+"Hanuman Gundi Falls":{
+    image:"Hanuman Gundi Falls.jpg",
+    details:"Hanuman Gundi Falls is a beautiful waterfall located in the Kudremukh National Park of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-    <div class="card">
-        <img src="images/mallalli.jpg">
-        <div class="card-content">
-            <h3> Mallalli Falls</h3>
-            <p>Located in the Coorg district, it is a spectacular waterfall.
-The waterfall is formed by the Kumaradhara River and drops from a height of 200 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-        </div>
-    </div>
+"Kadambi Falls":{
+    image:"Kadambi Falls.jpg",
+    details:" Kadambi Falls is a beautiful waterfall located in the Kudremukh region of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-    <div class="card">
-        <img src="images/hanuman.jpg">
-        <div class="card-content">
-            <h3> Hanuman Gundi Falls</h3>
-            <p>Located in the Kudremukh National Park, it is a beautiful waterfall.
-The waterfall is formed by a small stream and drops from a height of 30 meters.
-The falls are surrounded by dense forests and are a popular spot for nature lovers and adventure seekers.</p>
-        </div>
-    </div>
+"Bandaji Falls":{
+    image:"Bandaji Falls.jpg",
+    details:"Bandaji Falls is a popular destination for trekking to the waterfall in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-    <div class="card">
-        <img src="images/kadambi.jpg">
-        <div class="card-content">
-            <h3> Kadambi Falls</h3>
-            <p>Located in the Kudremukh region, it is a scenic waterfall.
-The waterfall is formed by a small stream and drops from a height of 25 meters.
-The falls are surrounded by lush greenery and are a popular spot for nature lovers and photographers.</p>
-        </div>
-    </div>
+"Jomlu Theertha Falls":{
+    image:"Jomlu Theertha Falls.jpg",
+    details:"Jomlu Theertha Falls is a beautiful waterfall located near Udupi in Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-    </div>
-        </section>
+"Sirimane Falls":{
+    image:"Sirimane Falls.jpg",
+    details:"Sirimane Falls is a popular destination for trekking to the waterfall in the Western Ghats of Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
 
-<footer>
-© 2026 Karnataka Tourism | Designed by Jeevan
-</footer>
+"Agaya Gangai Falls":{
+    image:"Agaya Gangai Falls.jpg",
+    details:"Agaya Gangai Falls is a beautiful waterfall located in the border region of Karnataka and Tamil Nadu. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+},
+
+"Chunchi Falls":{
+    image:"Chunchi Falls.jpg",
+    details:"Chunchi Falls is a small waterfall located near Kanakapura in Karnataka. It is known for its scenic beauty and is a popular destination for nature lovers and photographers. The waterfall is surrounded by lush greenery and offers a peaceful retreat in the dense forest."
+}
+}
+
+// Get place name from URL
+const params = new URLSearchParams(window.location.search);
+const place = params.get("place");
+
+if(data[place]){
+    document.getElementById("hero").style.backgroundImage =
+        "linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('" + data[place].image + "')";
+
+    document.getElementById("hero").innerHTML = "<h1>" + place + "</h1>";
+    document.getElementById("details").innerHTML = data[place].details;
+}
+else{
+    document.getElementById("details").innerHTML = "Details coming soon...";
+}
+
+</script>
 
 </body>
 </html>
