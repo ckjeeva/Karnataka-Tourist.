@@ -17,7 +17,7 @@
 
 body{
     background:#0f172a;
-    color:#fff;
+    color:white;
     overflow-x:hidden;
 }
 
@@ -26,7 +26,7 @@ body{
     height:50vh;
     background:
     linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-    url("images/karnataka.jpeg");
+    url("https://images.unsplash.com/photo-1618395213874-3d063a6e49ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080");
     background-size:cover;
     background-position:center;
     display:flex;
@@ -65,7 +65,6 @@ body{
 
 /* CARD */
 .card{
-    background:#1e293b;
     padding:40px 20px;
     border-radius:18px;
     transition:0.5s ease, transform 0.5s ease;
@@ -74,6 +73,14 @@ body{
     box-shadow:0 10px 20px rgba(0,0,0,0.5);
     position:relative;
     overflow:hidden;
+    background-size:cover;
+    background-position:center;
+    min-height:200px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    opacity:0;
+    transform:translateY(40px);
 }
 
 .card::before{
@@ -81,11 +88,10 @@ body{
     position:absolute;
     top:0; left:0;
     width:100%; height:100%;
-    background:linear-gradient(120deg, #06b6d4, #3b82f6, #f59e0b);
+    background:linear-gradient(120deg, rgba(6,182,212,0.7), rgba(59,130,246,0.7), rgba(245,158,11,0.7));
     transform:scaleX(0);
     transform-origin:left;
     transition:transform 0.5s ease;
-    opacity:0.4;
     z-index:0;
 }
 
@@ -111,6 +117,12 @@ body{
     opacity:0.85;
     position:relative;
     z-index:1;
+}
+
+/* Show animation for scroll */
+.card.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* BACK BUTTON */
@@ -169,37 +181,37 @@ body{
 
     <div class="grid">
 
-        <a href="adventure.html" class="card">
+        <a href="adventure.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1574169208507-8437617481eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Adventure</h3>
             <p>Trekking, rafting & thrilling outdoor activities</p>
         </a>
 
-        <a href="beach.html" class="card">
+        <a href="beach.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Beaches</h3>
             <p>Relax at scenic coastal destinations</p>
         </a>
 
-        <a href="hills.html" class="card">
+        <a href="hills.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1516637090014-cb1ab78511f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Hill Stations</h3>
             <p>Misty mountains & scenic landscapes</p>
         </a>
 
-        <a href="nature.html" class="card">
+        <a href="nature.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Nature & Scenic</h3>
             <p>Green valleys, forests & panoramic views</p>
         </a>
 
-        <a href="waterfalls.html" class="card">
+        <a href="waterfalls.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1578459313277-82734b7a52f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Waterfalls</h3>
             <p>Majestic and breathtaking cascades</p>
         </a>
 
-        <a href="historical.html" class="card">
+        <a href="historical.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Historical</h3>
             <p>Ancient temples, forts & royal heritage</p>
         </a>
-        
-        <a href="wildlife.html" class="card">
+
+        <a href="wildlife.html" class="card" style="background-image:url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1080');">
             <h3>Wildlife</h3>
             <p>National parks & forest safaris</p>
         </a>
@@ -209,6 +221,24 @@ body{
     <a href="index.html" class="back">← Back to Home</a>
 
 </section>
+
+<script>
+// Scroll Animation for cards
+function revealCards(){
+    const cards = document.querySelectorAll(".card");
+    const windowHeight = window.innerHeight;
+
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < windowHeight - 100){
+            card.classList.add("show");
+        }
+    });
+}
+
+window.addEventListener("scroll", revealCards);
+window.addEventListener("load", revealCards);
+</script>
 
 </body>
 </html>
