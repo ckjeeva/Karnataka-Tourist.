@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+.hero{
+    height:60vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:40px;
+    background:rgba(0,0,0,0.6);
+    padding:15px 30px;
+    border-radius:10px;
+}
+
+.content{
+    padding:60px 10%;
+    line-height:1.7;
+}
+
+.info-box{
+    background:#1e293b;
+    padding:25px;
+    border-radius:12px;
+    margin-top:30px;
+}
+
+.back{
+    display:inline-block;
+    margin:20px;
+    color:#06b6d4;
+    text-decoration:none;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<a href="adventure.html" class="back">← Back to Adventure</a>
+
+<div class="hero" id="hero"></div>
+
+<div class="content">
+    <h2>About this Destination</h2>
+    <div class="info-box" id="details"></div>
+</div>
+
+<script>
+
+const data = {
+
+"Dandeli":{
+    image:"Dandeli.jpg",
+    details:"Located in Uttara Kannada district, Dandeli is famous for river rafting on the Kali River, jungle safaris, kayaking and camping experiences.Dandeli is one of Karnataka’s top adventure hubs located on the banks of the Kali River. It is famous for white water rafting, kayaking, river crossing and zip-lining. The dense forests around Dandeli are part of the Western Ghats biodiversity hotspot. Visitors can also enjoy jungle safaris and birdwatching. It’s ideal for thrill seekers and nature lovers."
+},
+
+"Kudremukh":{
+    image:"kudremukh trek.jpg",
+    details:"Kudremukh is known for its horse-shaped peak and scenic trekking trails in the Western Ghats. Ideal for nature lovers.Kudremukh is known for its horse-shaped mountain peak and lush green landscapes. It is one of the most scenic trekking destinations in Karnataka. The region is part of Kudremukh National Park and offers breathtaking valley views. The trek is moderate and best visited during monsoon and post-monsoon seasons. Nature photography lovers adore this location."
+},
+
+"Kumara Parvatha":{
+    image:"kumara parvatha.jpg",
+    details:"One of the toughest treks in Karnataka located in Coorg. Suitable for experienced hikers.Kumara Parvatha is the second highest peak in Karnataka and a paradise for experienced trekkers. The trail passes through dense forests and steep climbs. It usually takes two days to complete the trek. The summit offers spectacular sunrise and sunset views. It is one of the toughest yet most rewarding treks in South India."
+},
+
+"Skandagiri":{
+    image:"skandagiri.jpg",
+    details:"Popular for night trekking near Bangalore with beautiful sunrise views above the clouds.Skandagiri is famous for night trekking near Bangalore. Trekkers climb early morning to witness sunrise above the clouds. The hill also has remnants of an ancient fort. It is a short but thrilling trek ideal for beginners. The cool breeze and panoramic views make it a weekend favorite."
+},
+
+"Kodachadri":{
+    image:"kodachadri.jpg",
+    details:"Kodachadri is a mountain peak in the Western Ghats known for its temple and stunning views. It is a popular trekking destination with moderate trails. The summit offers breathtaking views of the Arabian Sea and surrounding hills. The area is also rich in biodiversity, making it a favorite spot for nature lovers."
+},
+
+"Tadiandamol":{
+    image:"Tadiandamol.jpg",
+    details:"Tadiandamol is the highest peak in Coorg and the second highest in Karnataka. It is a popular trekking destination known for its scenic beauty and challenging trails. The trek offers stunning views of the surrounding hills and valleys. It is ideal for nature lovers and adventure enthusiasts."
+},      
+
+"Mullayanagiri":{
+    image:"Mullayanagiri.jpg",
+    details:"Mullayanagiri is the highest peak in Karnataka, located in the Chikmagalur district. It is a popular trekking destination known for its breathtaking views and serene environment. The trek to Mullayanagiri is moderately difficult and offers panoramic views of the Western Ghats. It is a must-visit for nature lovers and adventure seekers."
+},
+
+"Savandurga":{
+    image:"Savandurga.jpg",
+    details:"Savandurga is one of Asia’s largest monolith hills, located near Bangalore. It is a popular trekking destination known for its rocky terrain and stunning views. The trek to Savandurga is moderately difficult and offers panoramic views of the surrounding landscape. It is ideal for adventure enthusiasts and nature lovers."
+},
+
+"Ramanagara":{
+    image:"Ramanagara.jpg",
+    details:"Ramanagara is famous for its rocky hills and is a popular destination for rock climbing and trekking. It is located near Bangalore and offers stunning views of the surrounding landscape. The area is also known for its historical significance and was featured in the Bollywood movie 'Sholay'. It is ideal for adventure seekers and nature lovers."
+},
+
+"Bheemeshwari":{
+    image:"Bheemeshwari.jpg",
+    details:"Bheemeshwari is a popular destination for river rafting and adventure camping. It is located on the banks of the Cauvery River and offers stunning views of the surrounding landscape. The area is also known for its rich biodiversity and is a haven for nature lovers and adventure enthusiasts."
+},
+
+"Nandi Hills":{
+    image:"Nandi Hills.jpg",
+    details:"Nandi Hills is a popular destination for sunrise trekking and cycling. It is located near Bangalore and offers stunning views of the surrounding landscape. The area is also known for its historical significance and is a favorite spot for nature lovers and adventure seekers."
+},
+
+"Bandipur National Park":{
+    image:"Bandipur National Park.jpg",
+    details:"Bandipur National Park is a popular destination for wildlife safaris and jungle exploration. It is located in the Chamarajanagar district and is known for its rich biodiversity. The park is home to a variety of wildlife, including tigers, elephants, and leopards. It is ideal for nature lovers and wildlife enthusiasts."
+},
+
+"Nagarhole National Park":{
+    image:"Nagarhole National Park.jpg",
+    details:"Nagarhole National Park is a popular destination for jeep safaris in a dense forest reserve. It is located in the Kodagu district and is known for its rich biodiversity. The park is home to a variety of wildlife, including tigers, elephants, and leopards. It is ideal for nature lovers and wildlife enthusiasts."
+},
+
+"Anthargange":{
+    image:"Anthargange.jpg",
+    details:"Anthargange is a popular destination for cave exploration and night trekking. It is located near Bangalore and offers stunning views of the surrounding landscape. The area is also known for its historical significance and is a favorite spot for nature lovers and adventure seekers."
+},
+
+"Agumbe":{
+    image:"Agumbe.jpg",
+    details:"Agumbe is a popular destination for rainforest trekking and sunset viewpoints. It is located in the Shimoga district and is known for its rich biodiversity. The area is also known for its stunning sunsets and is a favorite spot for nature lovers and adventure seekers."
+}, 
+
+"Chitradurga Fort":{
+    image:"Chitradurga Fort.jpg",
+    details:"Chitradurga Fort is a massive hill fort perfect for exploration. It is located in the Chitradurga district and is known for its historical significance. The fort offers stunning views of the surrounding landscape and is a favorite spot for history buffs and adventure seekers."
+},
+
+"Jog Falls":{
+    image:"Jog Falls.jpg",
+    details:"Jog Falls is one of India’s highest waterfalls. It is located in the Shimoga district and is known for its stunning views. The area around Jog Falls is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Coorg":{
+    image:"Coorg.jpg",
+    details:"Coorg is a popular destination for coffee hills and river rafting adventures. It is located in the Kodagu district and is known for its scenic beauty. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Yana Caves":{
+    image:"Yana Caves.jpg",
+    details:"Yana Caves are unique limestone rock formations located in the Uttara Kannada district. They are popular for trekking and exploring the caves. The area is also known for its stunning views and is a favorite spot for nature lovers and adventure seekers."
+},
+
+"Gokarna":{
+    image:"Gokarna.jpg",
+    details:"Gokarna is a popular destination for beach trekking and water sports. It is located in the Uttara Kannada district and is known for its serene beaches and spiritual atmosphere. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"BR Hills":{
+    image:"BR Hills.jpg",
+    details:"BR Hills is a popular destination for wildlife safaris and forest trekking. It is located in the Chamarajanagar district and is known for its rich biodiversity. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Kemmangundi":{
+    image:"Kemmangundi.jpg",
+    details:"Kemmangundi is a popular hill station with scenic trekking trails. It is located in the Chikmagalur district and is known for its stunning views. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Biligiri Hills":{
+    image:"Biligiri Hills.jpg",
+    details:"Biligiri Hills is a popular destination for elephant sightings and jungle safaris. It is located in the Chamarajanagar district and is known for its rich biodiversity. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Shivanasamudra Falls":{
+    image:"Shivanasamudra Falls.jpg",
+    details:"Shivanasamudra Falls is a powerful twin waterfall on the River Cauvery. It is located in the Mandya district and is known for its stunning views. The area around Shivanasamudra Falls is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+},
+
+"Devarayanadurga":{
+    image:"Devarayanadurga.jpg",
+    details:"Devarayanadurga is a popular destination for rock climbing and sunrise trekking. It is located in the Tumkur district and is known for its stunning views. The area is also popular for trekking and nature walks. It is ideal for nature lovers and adventure seekers."
+}
+}
+
+// Get place name from URL
+const params = new URLSearchParams(window.location.search);
+const place = params.get("place");
+
+if(data[place]){
+    document.getElementById("hero").style.backgroundImage =
+        "linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('" + data[place].image + "')";
+
+    document.getElementById("hero").innerHTML = "<h1>" + place + "</h1>";
+    document.getElementById("details").innerHTML = data[place].details;
+}
+else{
+    document.getElementById("details").innerHTML = "Details coming soon...";
+}
+
+</script>
+
+</body>
+</html>
