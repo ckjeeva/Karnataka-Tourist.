@@ -159,7 +159,7 @@ hills.forEach(place => {
             <div class="card-content">
                 <h3>${place.name}</h3>
                 <p>${place.desc}</p>
-                <button onclick="alert('More details coming soon!')">View Details</button>
+               <button onclick="viewDetails('${place.name}')">View Details</button>
             </div>
         </div>
     `;
@@ -177,6 +177,10 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+function viewDetails(name){
+    window.location.href = `hills-details.html?place=${encodeURIComponent(name)}`;
+}
 
 </script>
 
