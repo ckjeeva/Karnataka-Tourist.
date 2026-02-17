@@ -5,212 +5,218 @@
 <title>Karnataka Tourism | Official Travel Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
 /* ===== GLOBAL ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
-body{
-    background:#0b1c2d;
-    color:#fff;
+body {
+    background: #0b1c2d;
+    color: #fff;
+    line-height: 1.6;
 }
 
 /* ===== NAVBAR ===== */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 8%;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(10px);
-    position:fixed;
-    width:100%;
-    top:0;
-    z-index:1000;
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(12px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:700;
-    color:#ffc107;
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffc107;
 }
 
-nav ul{
-    list-style:none;
-    display:flex;
-    gap:25px;
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-nav a{
-    text-decoration:none;
-    color:#fff;
-    font-weight:500;
-    transition:0.3s;
+nav a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
 }
 
-nav a:hover{
-    color:#ffc107;
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #ffc107;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
 }
 
-.login-btn{
-    background:#ffc107;
-    color:#000;
-    padding:8px 18px;
-    border-radius:20px;
+nav a:hover::after {
+    width: 100%;
 }
 
-/* ===== HAMBURGER ===== */
-.hamburger{
-    display:none;
-    flex-direction:column;
-    gap:5px;
-    cursor:pointer;
+.login-btn {
+    background: linear-gradient(135deg, #ffc107, #ffb347);
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.hamburger div{
-    width:25px;
-    height:3px;
-    background:#fff;
-    border-radius:2px;
+.login-btn:hover {
+    background: linear-gradient(135deg, #ffb347, #ffc107);
 }
 
-/* ===== OVERLAY ===== */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.5);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:900;
+/* ===== HAMBURGER (3 LINE) ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
 }
 
-.overlay.show{
-    opacity:1;
-    visibility:visible;
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
 /* ===== HERO ===== */
-.hero{
-    height:100vh;
-    background:
-    linear-gradient(rgba(11,28,45,0.6), rgba(11,28,45,0.6)),
-    url("karnataka.jpg);
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:0 20px;
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(11,28,45,0.6), rgba(11,28,45,0.6)),
+        url("karnataka.jpeg");
+    background-size: 50%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
 }
 
-.hero-content h1{
-    font-size:45px;
-    margin-bottom:20px;
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.hero-content p{
-    font-size:18px;
-    margin-bottom:30px;
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-.btn-primary{
-    background:#ffc107;
-    color:#000;
-    padding:12px 28px;
-    border-radius:25px;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
+.hero-buttons a {
+    display: inline-block;
+    padding: 12px 28px;
+    margin: 5px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-.btn-primary:hover{
-    transform:translateY(-3px);
+.btn-primary {
+    background: linear-gradient(135deg, #ffc107, #ffb347);
+    color: #000;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255,193,7,0.5);
 }
 
 /* ===== FOOTER ===== */
-footer{
-    background:#000;
-    padding:25px;
-    text-align:center;
+footer {
+    background: #000;
+    padding: 30px 8%;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.9;
 }
 
-/* ===== MOBILE ===== */
+/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-
-    nav ul{
-        position:fixed;
-        top:0;
-        right:-250px;
-        width:220px;
-        height:100%;
-        background:#111;
-        flex-direction:column;
-        padding-top:80px;
-        gap:30px;
-        transition:0.3s;
-        z-index:1000;
+    nav ul {
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: fixed;
+        top: 0;
+        right: -250px; /* hidden offscreen */
+        width: 200px;
+        height: 100%;
+        padding-top: 60px;
+        gap: 25px;
+        transform: translateX(0);
+        opacity: 0;
     }
-
-    nav ul.show{
-        right:0;
+    nav ul.show {
+        right: 0;
+        opacity: 1;
+        transition: all 0.3s ease;
     }
-
-    .hamburger{
-        display:flex;
+    nav li {
+        margin: 20px 0;
+        text-align: center;
     }
-
-    .hero-content h1{
-        font-size:28px;
+    .hamburger {
+        display: flex;
     }
-
-    .hero-content p{
-        font-size:15px;
+    .hero-content h1 {
+        font-size: 32px;
+    }
+    .hero-content p {
+        font-size: 16px;
     }
 }
-
 </style>
 </head>
-
 <body>
 
 <!-- NAVBAR -->
 <nav>
     <div class="logo">Karnataka Tourism</div>
-
     <ul id="nav-links">
         <li><a href="destinations.html">Destinations</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="login.html" class="login-btn">Login</a></li>
     </ul>
-
     <div class="hamburger" id="hamburger">
         <div></div>
         <div></div>
         <div></div>
+        <div class="overlay" id="overlay"></div>
     </div>
 </nav>
-
-<!-- OVERLAY (Correct Position) -->
-<div class="overlay" id="overlay"></div>
 
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
         <h1>Discover The Soul of Karnataka</h1>
         <p>Experience Heritage • Nature • Culture • Adventure</p>
-        <a href="explore.html" class="btn-primary">Explore Destinations</a>
+        <div class="hero-buttons">
+            <a href="explore.html" class="btn-primary">Explore Destinations</a>
+        </div>
     </div>
 </section>
 
@@ -220,33 +226,14 @@ footer{
 </footer>
 
 <script>
-
+// ===== HAMBURGER MENU =====
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
-const overlay = document.getElementById('overlay');
 
-// Open Menu
 hamburger.addEventListener('click', () => {
-    navLinks.classList.add('show');
-    overlay.classList.add('show');
+    navLinks.classList.toggle('show');
 });
-
-// Close When Clicking Overlay
-overlay.addEventListener('click', () => {
-    navLinks.classList.remove('show');
-    overlay.classList.remove('show');
-});
-
-// Close When Clicking Menu Link
-document.querySelectorAll('#nav-links a').forEach(link=>{
-    link.addEventListener('click',()=>{
-        navLinks.classList.remove('show');
-        overlay.classList.remove('show');
-    });
-});
-
 </script>
 
 </body>
 </html>
-
