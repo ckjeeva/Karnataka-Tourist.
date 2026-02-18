@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beach Details - Karnataka</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+section{
+    padding:60px 8%;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:30px;
+    padding:10px 20px;
+    background:linear-gradient(45deg,#0ea5e9,#0284c7);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:scale(1.05);
+}
+
+.details-container{
+    max-width:900px;
+    margin:auto;
+    background:#1e293b;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    padding:40px;
+}
+
+.details-content h1{
+    margin-bottom:15px;
+    color:#0ea5e9;
+}
+
+.details-content p{
+    margin-bottom:20px;
+    line-height:1.6;
+}
+
+.info-box{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.info{
+    background:#0f172a;
+    padding:15px;
+    border-radius:12px;
+}
+
+.info h4{
+    margin-bottom:8px;
+    color:#0ea5e9;
+}
+</style>
+</head>
+<body>
+
+<section>
+
+<a href="beache.html" class="back-btn">← Back to Beaches</a>
+
+<div class="details-container" id="detailsContainer"></div>
+
+</section>
+
+<script>
+
+const beachDetails = {
+
+"Malpe Beach":{
+    desc:"A popular beach near Udupi known for water sports, golden sands, and boat rides to St. Mary's Island.",
+    location:"Udupi District",
+    bestTime:"October to March",
+    activities:"Jet Ski, Parasailing, Boating",
+    vibe:"Family Friendly"
+},
+
+"Om Beach":{
+    desc:"Famous for its natural Om-shaped shoreline and scenic sunset views in Gokarna.",
+    location:"Uttara Kannada District",
+    bestTime:"October to March",
+    activities:"Trekking, Swimming, Cafes",
+    vibe:"Peaceful & Scenic"
+},
+
+"Kudle Beach":{
+    desc:"A calm and less crowded beach perfect for relaxation and sunset photography.",
+    location:"Gokarna",
+    bestTime:"October to March",
+    activities:"Beach Walk, Yoga, Camping",
+    vibe:"Chill & Relaxing"
+},
+
+"Panambur Beach":{
+    desc:"One of the cleanest beaches in Mangaluru known for sunsets and beach festivals.",
+    location:"Dakshina Kannada District",
+    bestTime:"October to February",
+    activities:"Boat Rides, Camel Ride",
+    vibe:"Family & Tourist Friendly"
+},
+
+"Gokarna Beach":{
+    desc:"Sacred beach town known for temples and scenic coastline.",
+    location:"Uttara Kannada District",
+    bestTime:"October to March",
+    activities:"Temple Visit, Beach Trek",
+    vibe:"Spiritual & Scenic"
+},
+
+"Tannirbhavi Beach":{
+    desc:"Quiet beach with tree-lined shores and beautiful sunset views.",
+    location:"Mangaluru",
+    bestTime:"October to March",
+    activities:"Relaxing, Photography",
+    vibe:"Calm & Clean"
+},
+
+"Kapu Beach":{
+    desc:"Beach famous for its lighthouse and breathtaking Arabian Sea views.",
+    location:"Udupi District",
+    bestTime:"October to February",
+    activities:"Lighthouse Visit, Sunset View",
+    vibe:"Scenic & Romantic"
+},
+
+"Maravanthe Beach":{
+    desc:"Unique beach where Arabian Sea runs parallel to the highway and river on the other side.",
+    location:"Udupi District",
+    bestTime:"October to March",
+    activities:"Photography, Scenic Drive",
+    vibe:"Unique & Peaceful"
+}
+
+};
+
+// Get place name from URL
+const urlParams = new URLSearchParams(window.location.search);
+const placeName = urlParams.get("place");
+
+const container = document.getElementById("detailsContainer");
+
+if(beachDetails[placeName]){
+    const place = beachDetails[placeName];
+
+    container.innerHTML = `
+        <div class="details-content">
+            <h1>${placeName}</h1>
+            <p>${place.desc}</p>
+
+            <div class="info-box">
+                <div class="info">
+                    <h4>Location</h4>
+                    <p>${place.location}</p>
+                </div>
+
+                <div class="info">
+                    <h4>Best Time</h4>
+                    <p>${place.bestTime}</p>
+                </div>
+
+                <div class="info">
+                    <h4>Activities</h4>
+                    <p>${place.activities}</p>
+                </div>
+
+                <div class="info">
+                    <h4>Vibe</h4>
+                    <p>${place.vibe}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+else{
+    container.innerHTML = "<h2 style='text-align:center;'>Beach Details Coming Soon...</h2>";
+}
+
+</script>
+
+</body>
+</html>
