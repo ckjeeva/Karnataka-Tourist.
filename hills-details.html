@@ -47,20 +47,17 @@ section{
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.details-container img{
-    width:100%;
-    height:400px;
-    object-fit:cover;
-}
-
-.details-content{
-    padding:30px;
+    padding:40px;
 }
 
 .details-content h1{
     margin-bottom:15px;
+    color:#22c55e;
+}
+
+.details-content p{
+    margin-bottom:20px;
+    line-height:1.6;
 }
 
 .info-box{
@@ -80,7 +77,6 @@ section{
     margin-bottom:8px;
     color:#22c55e;
 }
-
 </style>
 </head>
 <body>
@@ -94,7 +90,6 @@ section{
 </section>
 
 <script>
-
 
 const hillsDetails = {
 
@@ -138,14 +133,6 @@ const hillsDetails = {
     height:"1,200 meters"
 },
 
-"Horsley Hills":{
-    desc:"A serene hill station with viewpoints, gardens, and pleasant weather.",
-    location:"Chittoor District (near Karnataka border)",
-    bestTime:"October to March",
-    difficulty:"Easy",
-    height:"1,265 meters"
-},
-
 "Yana Hills":{
     desc:"Unique karst rock formations and caves in a lush forest setting.",
     location:"Uttara Kannada District",
@@ -162,30 +149,6 @@ const hillsDetails = {
     height:"850 meters"
 },
 
-"Anthargange Caves Hill":{
-    desc:"Rocky hill with caves and adventurous trekking routes.",
-    location:"Kolar District",
-    bestTime:"October to February",
-    difficulty:"Moderate",
-    height:"1,400 meters"
-},
-
-"Ramadevara Betta":{
-    desc:"Rock hill near Ramanagara with a temple and stunning views.",
-    location:"Ramanagara District",
-    bestTime:"October to February",
-    difficulty:"Easy to Moderate",
-    height:"900 meters"
-},
-
-"SRS Hills":{
-    desc:"Scenic hill range with trekking trails and natural beauty.",
-    location:"Chamarajanagar District",
-    bestTime:"October to March",
-    difficulty:"Moderate",
-    height:"1,000 meters"
-},
-
 "Makalidurga":{
     desc:"Hill fort trek near Doddaballapura with cliff views and historical significance.",
     location:"Bengaluru Rural District",
@@ -194,118 +157,15 @@ const hillsDetails = {
     height:"1,117 meters"
 },
 
-"Avani Betta":{
-    desc:"Hill with ancient temples and rugged rock views near Kanakapura.",
-    location:"Ramanagara District",
-    bestTime:"October to February",
-    difficulty:"Moderate",
-    height:"900 meters"
-},
-
-"Huttari Betta":{
-    desc:"Forest hill trek with scenic top views and tranquil surroundings.",
-    location:"Chamarajanagar District",
-    bestTime:"October to March",
-    difficulty:"Easy to Moderate",
-    height:"1,200 meters"
-},  
-
-"Kunigal Betta":{
-    desc:"Quiet hill for sunrise vistas and nature walks near Kunigal.",
-    location:"Tumkur District",
-    bestTime:"October to February",
-    difficulty:"Easy",
-    height:"900 meters"
-},
-
-"Rayalaseema Hills":{
-    desc:"Rocky hill region with rustic charm and panoramic views.",
-    location:"Kolar District",
-    bestTime:"October to February",
-    difficulty:"Moderate",
-    height:"1,000 meters"
-},
-
-"Omkar Hills":{
-    desc:"Lush hill park area with city views and temples in Bengaluru.",
-    location:"Bengaluru Urban District",
-    bestTime:"Year-round",
-    difficulty:"Easy",
-    height:"900 meters"
-},  
-
-"Doddaballapura Hills":{
-    desc:"Rocky hillocks ideal for day treks near Bangalore with scenic views.",
-    location:"Bengaluru Rural District",
-    bestTime:"October to February",
-    difficulty:"Easy to Moderate",
-    height:"900 meters"
-},
-
-"Kanva Betta":{
-    desc:"Hill near Kanva reservoir with panoramic sunrise views and temple.",
-    location:"Chikkaballapur District",
-    bestTime:"October to February",
-    difficulty:"Easy",
-    height:"900 meters"
-},
-
-"Bilikal Rangaswamy Betta":{
-    desc:"Hill with a temple dedicated to Lord Rangaswamy and scenic views.",
-    location:"Chikkaballapur District",
-     bestTime:"October to February",
-     difficulty:"Moderate",
-     height:"1,200 meters"
-},  
-
-"Jenukallu Betta":{
-    desc:"Hill with a temple and panoramic views near Kanakapura.",
-    location:"Ramanagara District",
-    bestTime:"October to February",
-    difficulty:"Moderate",
-    height:"900 meters"
-},  
-
 "Nijagal Betta":{
     desc:"Popular rock hill near Tumkur for short treks and sunrise views.",
     location:"Tumkur District",
-     bestTime:"October to February",
-     difficulty:"Easy",
-     height:"900 meters"
-},  
-
-"Hesaraghatta Hills":{
-    desc:"Open grassland hillscape with lake views and birdwatching near Bengaluru.",
-    location:"Bengaluru Urban District",
-     bestTime:"October to February",
-     difficulty:"Easy",
-     height:"900 meters"
-},  
-
-"Anthargange Caves Hill":{
-    desc:"Rocky hill with caves and adventurous treks near Kolar.",
-    location:"Kolar District",
-     bestTime:"October to February",
-     difficulty:"Moderate",
-     height:"1,400 meters"
-},  
-
-"K Gudi Hills":{
-    desc:"Forest and hill zone with wildlife and quiet nature near Chamarajanagar.",
-    location:"Chamarajanagar District",
-     bestTime:"October to March",
-     difficulty:"Moderate",
-     height:"1,200 meters"
-},
-
-"Honnammadevi Betta":{
-    desc:"Hill peak near Shivagange with temples and rock paths.",
-    location:"Tumkur District",
-     bestTime:"October to February",
-     difficulty:"Moderate",
-     height:"1,300 meters"
-},
+    bestTime:"October to February",
+    difficulty:"Easy",
+    height:"900 meters"
 }
+
+};
 
 // Get place from URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -317,7 +177,6 @@ if(hillsDetails[placeName]){
     const place = hillsDetails[placeName];
 
     container.innerHTML = `
-        <img src="${place.img}" alt="${placeName}">
         <div class="details-content">
             <h1>${placeName}</h1>
             <p>${place.desc}</p>
@@ -347,11 +206,10 @@ if(hillsDetails[placeName]){
     `;
 }
 else{
-    container.innerHTML = "<h2 style='padding:40px;text-align:center;'>Details Coming Soon...</h2>";
+    container.innerHTML = "<h2 style='text-align:center;'>Details Coming Soon...</h2>";
 }
 
 </script>
 
 </body>
 </html>
-
